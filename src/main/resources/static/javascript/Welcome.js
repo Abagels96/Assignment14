@@ -11,4 +11,5 @@ fetch('/chat' ,{
 	headers: {'Content-Type':'application/x-www-form-urlencoded'
 	},
 	body:`username=${encodeURIComponent(username)}`
-}). then(response=> response.text()).then(data=>console.log(data))
+}). then(response=> response.text()).then(html=> {document.body.innerHTML=html})
+

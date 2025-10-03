@@ -24,13 +24,14 @@ class UserController {
 	}
 
 	@GetMapping("/chat")
-	public String showChatPage() {
+	public String showChatPage( ) {
+		
 		return "chat";
 	}
 
 	@PostMapping("/chat")
-	public String chatPage(@RequestParam String username, ModelMap model) {
-
+	public String chatPage(@RequestParam (name = "username", required = false) String username, ModelMap model) {
+System.out.println(username);
 		model.addAttribute("username", username);
 		return "chat";
 	}

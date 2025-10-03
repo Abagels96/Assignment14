@@ -9,14 +9,6 @@ import com.google.gson.Gson;
 public class UserService {
 
 	
-	public User convertUsernameFromJavascript(String theUser) {
-		Gson gson= new Gson();
-		
-		User user= gson.fromJson(theUser,User.class);
-		
-		return user;
-		
-	}
 	
 	
 }
