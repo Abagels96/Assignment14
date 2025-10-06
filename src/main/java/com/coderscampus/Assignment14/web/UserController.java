@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.coderscampus.Assignment14.domain.User;
 import com.coderscampus.Assignment14.service.UserService;
 
-
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 class UserController {
@@ -25,19 +25,21 @@ class UserController {
 	}
 
 	@GetMapping("/chat")
-	public String showChatPage( String username, ModelMap model) {
+	public String showChatPage(ModelMap model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
 		model.put("username", username);
 		return "chat";
 	}
 
 	@PostMapping("/chat")
-	public String chatPage(@RequestParam (name = "username", required = false) String username, ModelMap model,User user, String message) {
-System.out.println(username);
+	public String chatPage(@RequestParam(name = "username", required = false) String username, ModelMap model,
+			HttpSession session, String message) {
+		System.out.println(username);
+	    session.setAttribute("username", username);
 		model.addAttribute("username", username);
-		
-		userService.saveMessages(user, message);
-		
-		
+
+//		userService.saveMessages(user, message);
+
 		return "chat";
 	}
 
