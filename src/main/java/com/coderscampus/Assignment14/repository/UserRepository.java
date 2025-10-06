@@ -18,7 +18,11 @@ public class UserRepository {
 public  List<String> savePersonalMessages(User user,String message) {
 		
 		if (message!= null) {
-		messages.add(message);
+	
+				user.setMessageContent(message);	
+				String messageContent	= user.getMessageContent();
+				messages.add(messageContent);
+	
 		}
 		return messages;
 		
