@@ -11,32 +11,29 @@ import com.coderscampus.Assignment14.domain.User;
 
 @Repository
 public class UserRepository {
-	Map <String,List<String>>  masterList= new HashMap<>();
-	
-	List<String> messages= new ArrayList <>();
-	
-public  List<String> savePersonalMessages(User user,String message) {
-		
-		if (message!= null) {
-	
-				user.setMessageContent(message);	
-				String messageContent	= user.getMessageContent();
-				messages.add(messageContent);
-	
+	Map<String, List<String>> masterList = new HashMap<>();
+
+	List<String> messages = new ArrayList<>();
+
+	public List<String> savePersonalMessages(String username, String message) {
+
+		if (message != null) {
+			User user = new User();
+			user.setUsername(username);
+			user.setMessageContent(message);
+			String messageContent = user.getMessageContent();
+			messages.add(messageContent);
+
 		}
 		return messages;
-		
-		
-		
-	}
-	
-	public void saveAllMessages(List<String> messages,String username ) {
 
-		
-		masterList.put(username,messages);// validate in case this is empty
-		
 	}
 
-	
-	
+	public Map<String, List<String>> saveAllMessages( String username,List<String> messages) {
+
+		masterList.put(username, messages);// validate in case this is empty
+		return masterList;
+
+	}
+
 }

@@ -1,6 +1,9 @@
 package com.coderscampus.Assignment14.service;
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +17,16 @@ UserRepository userRepo;
 	
 	
 	
-public void	saveMessages(User user, String message) {
+public void	saveMessages(String username, String message) {
 	
-	if(user!= null) {
-	userRepo.savePersonalMessages(user, message);}
+	if(username!= null) {
+		
+	List<String> messages= userRepo.savePersonalMessages(username, message);
+Map<String,List<String>>
+allMessages=userRepo.saveAllMessages(username, messages);
 	
 	
 }
 	
 	
-}
+} }

@@ -1,11 +1,14 @@
 package com.coderscampus.Assignment14.web;
 
+import javax.swing.JTextArea;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.coderscampus.Assignment14.domain.User;
 import com.coderscampus.Assignment14.service.UserService;
@@ -33,14 +36,26 @@ class UserController {
 
 	@PostMapping("/chat")
 	public String chatPage(@RequestParam(name = "username", required = false) String username, ModelMap model,
-			HttpSession session, String message) {
+			HttpSession session) {
 		System.out.println(username);
-	    session.setAttribute("username", username);
+		session.setAttribute("username", username);
 		model.addAttribute("username", username);
-
-//		userService.saveMessages(user, message);
-
 		return "chat";
+	}
+
+	@PostMapping("/message")
+//	@ResponseBody
+	public String messagePost(@RequestParam(name = "message", required = false) String message, HttpSession session)
+
+	{
+		String username = (String) session.getAttribute("username");
+
+		System.out.println(message);
+		System.out.println("I am here");
+		userService.saveMessages(username, message);
+		session.setAttribute("content", message);
+
+		return "redirect:/chat";
 	}
 
 }
