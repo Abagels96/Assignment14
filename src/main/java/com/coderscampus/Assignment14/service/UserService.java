@@ -17,16 +17,15 @@ UserRepository userRepo;
 	
 	
 	
-public void	saveMessages(String username, String message) {
+public void saveMessages(String username, String message) {
 	
 	if(username!= null) {
 		
-	List<String> messages= userRepo.savePersonalMessages(username, message);
-Map<String,List<String>>
-allMessages=userRepo.saveAllMessages(username, messages);
-	
-	
-}
+	Map<String, List<String>> messages= userRepo.savePersonalMessages(username, message);
+	String list= messages.toString();
+	System.out.println(list);
+
+	}
 	
 	
 } }

@@ -11,11 +11,13 @@
 <div id=inputForm >
 <textarea  id=textArea rows="10" cols="200" ></textarea>
 <br> <br>
-<label  th:text="${username}  +'   please type your chat here'" ></label>
+<label  th:text="${username}  + '   Please type your chat here'" ></label>
 <br>
 <input type="text" id=inputBox name="message"/>
 <!-- put javascript code or something that can enlarge the input -->
 <button type="button" id=submit >Enter</button>
+
+<a th:href=@{/welcome} > Back</a>
 </div>
 <script type="module" src="javascript/chat.js"></script>
 </body>

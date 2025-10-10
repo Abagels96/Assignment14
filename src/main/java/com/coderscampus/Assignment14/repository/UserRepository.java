@@ -11,29 +11,28 @@ import com.coderscampus.Assignment14.domain.User;
 
 @Repository
 public class UserRepository {
-	Map<String, List<String>> masterList = new HashMap<>();
+	
+//	List<String> chatLog= new ArrayList<>();
+//	chatLog.add(username,message);
 
-	List<String> messages = new ArrayList<>();
+	Map<String, List<String>> messages = new HashMap<>();
 
-	public List<String> savePersonalMessages(String username, String message) {
-
-		if (message != null) {
-			User user = new User();
-			user.setUsername(username);
-			user.setMessageContent(message);
-			String messageContent = user.getMessageContent();
-			messages.add(messageContent);
-
+	public Map<String, List<String>>  savePersonalMessages(String username, String message) {
+		if (message != null&& !message.isBlank()) {
+			
+			List<String> justText=messages.getOrDefault(username,new ArrayList<>() ) ;
+		justText.add(message);
+			// I need a declaration that will actually add the message chatGPT is hallucinating and  being dumb
+			messages.put(username,justText);
+        
 		}
+		
 		return messages;
 
 	}
+	
 
-	public Map<String, List<String>> saveAllMessages( String username,List<String> messages) {
 
-		masterList.put(username, messages);// validate in case this is empty
-		return masterList;
 
-	}
 
 }

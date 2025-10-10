@@ -2,15 +2,22 @@
 
 let text = "Local Host says: What's your name?"
 let defaultText = "User1"
+
+function getUsername(){
 let username = window.prompt(text, defaultText)
+sessionStorage.setItem("username",username)
+	while(username===null){
+  username = window.prompt(text, defaultText)
 
-//verify that text is used
-if (username != null) {
-	console.log("confirmed")
+	}
+fetchUsername(username)
+return username
 
-} else (window.prompt(text, defaultText))
-fetchUsername()
-function fetchUsername() {
+}
+
+getUsername()
+
+function fetchUsername(username) {
 	fetch('/chat', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

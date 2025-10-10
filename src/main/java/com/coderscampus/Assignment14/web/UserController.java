@@ -1,5 +1,8 @@
 package com.coderscampus.Assignment14.web;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.swing.JTextArea;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -49,13 +53,20 @@ class UserController {
 
 	{
 		String username = (String) session.getAttribute("username");
-
+  
 		System.out.println(message);
 		System.out.println("I am here");
-		userService.saveMessages(username, message);
+		session.setAttribute("username", username);
 		session.setAttribute("content", message);
+		userService.saveMessages(username, message);
+		
 
 		return "redirect:/chat";
+	}
+	
+	@GetMapping("/message")
+	public void displayMessage(@RequestBody Map<String, List<String>> messages){
+		
 	}
 
 }
