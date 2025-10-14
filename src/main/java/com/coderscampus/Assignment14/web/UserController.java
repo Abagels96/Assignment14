@@ -1,5 +1,6 @@
 package com.coderscampus.Assignment14.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,7 @@ import jakarta.servlet.http.HttpSession;
 class UserController {
 	@Autowired
 	UserService userService;
+	private List<String> log= new ArrayList<>();
 
 	@GetMapping("/welcome")
 	public String welcomePage(ModelMap model) {
@@ -48,25 +50,31 @@ class UserController {
 	}
 
 	@PostMapping("/message")
-//	@ResponseBody
-	public String messagePost(@RequestParam(name = "message", required = false) String message, HttpSession session)
+	@ResponseBody
+	public String messagePost(@RequestBody Map<String,String> messages, HttpSession session)
 
 	{
-		String username = (String) session.getAttribute("username");
+		
+		String message= messages.get("message");
+		String username= messages.get("username");
+//		String username = (String) session.getAttribute("username");
   
 		System.out.println(message);
+		System.out.println(username);
 		System.out.println("I am here");
 		session.setAttribute("username", username);
 		session.setAttribute("content", message);
 		userService.saveMessages(username, message);
+		log.add(username +":" + message);
 		
 
-		return "redirect:/chat";
+		return "Message received";
 	}
-	
+	@ResponseBody
 	@GetMapping("/message")
-	public void displayMessage(@RequestBody Map<String, List<String>> messages){
+	public List<String> displayMessage(){
 		
+		return log;
 	}
 
 }

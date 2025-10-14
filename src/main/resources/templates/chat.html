@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <head >
-<link rel="stylesheet" href="chat.css">  
+<link rel="stylesheet" href="css/chat.css">  
 <meta charset="UTF-8">
 <title></title>
 </head>
@@ -9,7 +9,7 @@
 
 
 <div id=inputForm >
-<textarea  id=textArea rows="10" cols="200" ></textarea>
+<textarea readOnly id=textArea rows="10" cols="200" ></textarea>
 <br> <br>
 <label  th:text="${username}  + '   Please type your chat here'" ></label>
 <br>

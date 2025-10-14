@@ -4,13 +4,14 @@
 
 body{
 font-family:Tahoma;
-
-
+background-color :#44C9DD;
+}
 label{
 	color:#911D1D;	
 }
 
 
 text-area{
-	
-	outline:c98a1e;}
+	background-color:#F7D7D7;
+	outline:#c98a1e;
+	}
