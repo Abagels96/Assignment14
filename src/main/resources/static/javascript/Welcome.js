@@ -5,23 +5,24 @@ let defaultText = "User1"
 
 function getUsername(){
 let username = window.prompt(text, defaultText)
-sessionStorage.setItem("username",username)
+
 	while(username===null){
   username = window.prompt(text, defaultText)
 
 	}
-fetchUsername(username)
+setUsername(username)
+sessionStorage.setItem("username",username)
 return username
 
 }
 
 getUsername()
 
-function fetchUsername(username) {
+function setUsername(username) {
 	fetch('/chat', {
 		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: `username=${encodeURIComponent(username)}`
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({username})
 	})
 }
 

@@ -37,8 +37,10 @@ if (username != null ) {
 
 		}
 		
-		
+	
 		}
 
-	}
+}
+	public List<String> loadMessages() {
+		return messageRepo.loadMessages();	}
 }

@@ -11,14 +11,15 @@ function transferMessages() {
 	let button = document.getElementById('submit')
 	let inputMessage = document.getElementById('inputBox')
 
-	button.addEventListener('click',function (){
-//		event.preventDefault()
+	button.addEventListener('click', function() {
+		//		event.preventDefault()
 		let username = sessionStorage.getItem("username")
 		let message = document.getElementById('inputBox').value
 
 
 		if (message != null) {
 			textArea.value += `${username}: ${message}\n`
+			inputMessage.value = ''
 
 
 		}
@@ -30,10 +31,9 @@ function transferMessages() {
 			body: JSON.stringify({ username: username, message: message })
 		}).then(response => response.text())
 			.then(result => console.log(result))
-			.then(messages=> {textArea.value =''
-				messages.forEach(msg=> textArea.value +=msg+ '/n')
-			)
-			inputMessage.value = ''
+			
+			
+		
 			
 
 		
@@ -41,8 +41,25 @@ function transferMessages() {
 
 
 	})
+	
+	function loadMessages() {
+		fetch('/chat', {
+			method: 'GET'
+		}).then(response => response.json())
+			.then(messages => {
+				textArea.value = ''
+				messages.forEach(message => textArea.value += message + '\n')
+			})
+
+
+	}
+	
+	setInterval(loadMessages, 5000)
 }
-setInterval(transferMessages,5000)
+	
+
+
+
 
 
 
