@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head >
-<link rel="stylesheet" href="css/chat.css">  
+<head>
+<link rel="stylesheet" href="css/chat.css">
 <meta charset="UTF-8">
 <title></title>
 </head>
 <body>
 
 
-<div id=inputForm >
-<div > <textarea readOnly id=textArea rows="10" cols="200" ></textarea>
-<br> <br></div>
+	<div id=inputForm>
+		<div>
+			<textarea readOnly id=textArea rows="10" cols="200"></textarea>
+			<br> <br>
+		</div>
 
-<label  th:text="${username}  + '   Please type your chat here'" ></label>
-<br>
-<input type="text" id=inputBox name="message"/>
-<!-- put javascript code or something that can enlarge the input -->
-<button type="button" id=submit >Enter</button>
+		<label th:text="${username}  + '   Please type your chat here'"></label>
+		<br> <input type="text" id=inputBox name="message" />
+		<!-- put javascript code or something that can enlarge the input -->
+		<button type="button" id=submit>Enter</button>
 
-<a th:href=@{/welcome} > Back</a>
-</div>
-<script type="module" src="javascript/chat.js"></script>
+		<a th:href=@{/welcome}> Back</a>
+	</div>
+	<script type="module" src="javascript/chat.js"></script>
 </body>
 </html>

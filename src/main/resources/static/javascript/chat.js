@@ -4,7 +4,7 @@ let username = sessionStorage.getItem("username")
 if (!username || username.trim() === '') {
 	alert("You don't have a username.Please sign in")
 	window.location.href = "/welcome"
-	
+
 } else (
 	document.addEventListener('DOMContentLoaded', transferMessages))
 

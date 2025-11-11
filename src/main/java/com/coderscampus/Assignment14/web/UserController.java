@@ -3,7 +3,6 @@ package com.coderscampus.Assignment14.web;
 import java.util.List;
 import java.util.Map;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,7 +18,7 @@ import com.coderscampus.Assignment14.service.MessageService;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
- public class UserController {
+public class UserController {
 	@Autowired
 	UserService userService;
 	@Autowired
@@ -31,49 +30,39 @@ import jakarta.servlet.http.HttpSession;
 		return "Welcome";
 
 	}
- 
+
 	@GetMapping("/chat")
-	public String showChatPage(ModelMap model, HttpSession session ) {
-		String username= (String) session.getAttribute("username");
-		List<String> listOfMessages= userService.loadMessages();
-	
+	public String showChatPage(ModelMap model, HttpSession session) {
+		String username = (String) session.getAttribute("username");
+		List<String> listOfMessages = userService.loadMessages();
+
 		model.put("username", username);
 		model.put("messages", listOfMessages);
-		return "chat" ;
+		return "chat";
 	}
 
 	@ResponseBody
-	@GetMapping(value="/chat/loadMessages", produces="application/json")
+	@GetMapping(value = "/chat/loadMessages", produces = "application/json")
 	public List<String> getMessages(ModelMap model) {
-		
+
 		return userService.loadMessages();
 	}
-@ResponseBody
+
+	@ResponseBody
 	@PostMapping("/chat")
-	public String chatPage(@RequestBody Map<String,String> payload, ModelMap model,
-			HttpSession session) {
-		String message= payload.get("message");
-		String username= payload.get("username");
-System.out.println("here is the payload"+ message + username);  
+	public String chatPage(@RequestBody Map<String, String> payload, ModelMap model, HttpSession session) {
+		String message = payload.get("message");
+		String username = payload.get("username");
+		System.out.println("here is the payload" + message + username);
 		System.out.println(message);
 		System.out.println(username);
 		System.out.println("I am here");
-		messageService.saveMessages(message,username);
+		messageService.saveMessages(message, username);
 		userService.saveAllMessages(username);
 		session.setAttribute("username", username);
 		session.setAttribute("content", message);
-		
-		
-		
+
 		return "OK";
 	}
-
-		
-	
-		
-
-
-	
-	
 
 }
