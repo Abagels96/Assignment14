@@ -14,9 +14,9 @@ public class MessageService {
 	
 	MessageRepository messageRepo;
 	
-	public String saveMessages(String messageContent) {
+	public String saveMessages(String messageContent,String username) {
 		
-		messageRepo.saveMessages(messageContent);
+		messageRepo.saveMessages(messageContent,username);
 		return messageContent;
 		
 	}

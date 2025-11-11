@@ -1,7 +1,7 @@
 
 
-document.addEventListener('DOMContentLoaded', transferMessages);
 
+document.addEventListener('DOMContentLoaded', transferMessages);
 
 
 
@@ -14,6 +14,10 @@ function transferMessages() {
 	button.addEventListener('click', function() {
 		//		event.preventDefault()
 		let username = sessionStorage.getItem("username")
+		if (username === null) {
+			alert("You don't have a username.Please sign in")
+			window.location.href = "/welcome"
+		}
 		let message = document.getElementById('inputBox').value
 
 
@@ -31,19 +35,19 @@ function transferMessages() {
 			body: JSON.stringify({ username: username, message: message })
 		}).then(response => response.text())
 			.then(result => console.log(result))
-			
-			
-		
-			
 
-		
+
+
+
+
+
 
 
 
 	})
-	
+
 	function loadMessages() {
-		fetch('/chat', {
+		fetch('/chat/loadMessages', {
 			method: 'GET'
 		}).then(response => response.json())
 			.then(messages => {
@@ -53,10 +57,10 @@ function transferMessages() {
 
 
 	}
-	
+
 	setInterval(loadMessages, 5000)
 }
-	
+
 
 
 

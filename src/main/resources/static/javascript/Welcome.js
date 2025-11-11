@@ -1,7 +1,5 @@
-
-
-let text = "Local Host says: What's your name?"
-let defaultText = "User1"
+let text = 'Local Host says: Whats your name?'
+let defaultText = null
 
 function getUsername(){
 let username = window.prompt(text, defaultText)
@@ -11,7 +9,7 @@ let username = window.prompt(text, defaultText)
 
 	}
 setUsername(username)
-sessionStorage.setItem("username",username)
+sessionStorage.setItem('username',username)
 return username
 
 }
@@ -25,6 +23,11 @@ function setUsername(username) {
 		body: JSON.stringify({username})
 	})
 }
+	
+
+
+
+
 
 
 

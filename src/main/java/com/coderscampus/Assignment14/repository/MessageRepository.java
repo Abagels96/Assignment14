@@ -11,10 +11,10 @@ public class MessageRepository {
 	List<String> messages= new ArrayList<>();
 	
 	
-	public void saveMessages(String message) {
+	public void saveMessages(String message,String username) {
 		
 		if(message!=null&&!message.isBlank()) {
-			messages.add(message);
+			messages.add(username+" : "+message);
 			
 		}
 		

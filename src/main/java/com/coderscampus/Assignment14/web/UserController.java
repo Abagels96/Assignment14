@@ -26,12 +26,12 @@ import jakarta.servlet.http.HttpSession;
 	MessageService messageService;
 
 	@GetMapping("/welcome")
-	public String welcomePage(ModelMap model) {
+	public String welcomePage() {
 
 		return "Welcome";
 
 	}
-
+ 
 	@GetMapping("/chat")
 	public String showChatPage(ModelMap model, HttpSession session ) {
 		String username= (String) session.getAttribute("username");
@@ -40,6 +40,13 @@ import jakarta.servlet.http.HttpSession;
 		model.put("username", username);
 		model.put("messages", listOfMessages);
 		return "chat" ;
+	}
+
+	@ResponseBody
+	@GetMapping(value="/chat/loadMessages", produces="application/json")
+	public List<String> getMessages(ModelMap model) {
+		
+		return userService.loadMessages();
 	}
 @ResponseBody
 	@PostMapping("/chat")
@@ -51,7 +58,7 @@ System.out.println("here is the payload"+ message + username);
 		System.out.println(message);
 		System.out.println(username);
 		System.out.println("I am here");
-		messageService.saveMessages(message);
+		messageService.saveMessages(message,username);
 		userService.saveAllMessages(username);
 		session.setAttribute("username", username);
 		session.setAttribute("content", message);
