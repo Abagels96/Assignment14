@@ -17,7 +17,6 @@ function transferMessages() {
 	let inputMessage = document.getElementById('inputBox')
 
 	button.addEventListener('click', function() {
-		//		event.preventDefault()
 		console.log(username)
 
 

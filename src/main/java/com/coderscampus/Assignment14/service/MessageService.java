@@ -21,9 +21,6 @@ public class MessageService {
 
 	}
 
-	@PostConstruct
-	public void init() {
-		System.out.println("✅ MessageService bean has been created successfully!");
-	}
+	
 
 }

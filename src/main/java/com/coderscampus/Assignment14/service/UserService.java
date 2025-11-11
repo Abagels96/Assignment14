@@ -28,8 +28,6 @@ public class UserService {
 				System.out.println(message);
 				Map<String, List<String>> messages = userRepo.savePersonalMessages(username, message);
 				String list = messages.toString();
-				System.out.println(list);
-//            System.out.println(userRepo.getAllMessages());
 
 			}
 

@@ -53,10 +53,7 @@ public class UserController {
 	public String chatPage(@RequestBody Map<String, String> payload, ModelMap model, HttpSession session) {
 		String message = payload.get("message");
 		String username = payload.get("username");
-		System.out.println("here is the payload" + message + username);
-		System.out.println(message);
-		System.out.println(username);
-		System.out.println("I am here");
+		
 		messageService.saveMessages(message, username);
 		userService.saveAllMessages(username);
 		session.setAttribute("username", username);
