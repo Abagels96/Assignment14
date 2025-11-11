@@ -1,7 +1,12 @@
 
 
-
-document.addEventListener('DOMContentLoaded', transferMessages);
+let username = sessionStorage.getItem("username")
+if (!username || username.trim() === '') {
+	alert("You don't have a username.Please sign in")
+	window.location.href = "/welcome"
+	
+} else (
+	document.addEventListener('DOMContentLoaded', transferMessages))
 
 
 
@@ -13,11 +18,10 @@ function transferMessages() {
 
 	button.addEventListener('click', function() {
 		//		event.preventDefault()
-		let username = sessionStorage.getItem("username")
-		if (username === null) {
-			alert("You don't have a username.Please sign in")
-			window.location.href = "/welcome"
-		}
+		console.log(username)
+
+
+
 		let message = document.getElementById('inputBox').value
 
 

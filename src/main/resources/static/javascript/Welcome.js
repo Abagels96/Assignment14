@@ -1,10 +1,10 @@
 let text = 'Local Host says: Whats your name?'
-let defaultText = null
+let defaultText =''
 
 function getUsername(){
 let username = window.prompt(text, defaultText)
 
-	while(username===null){
+	while(!username||username.trim()==''){
   username = window.prompt(text, defaultText)
 
 	}
